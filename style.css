@@ -169,7 +169,7 @@ opacity:0.85;
 }
 #about{
     font-size:17px;
-    max-width:850px;
+    max-width:1225px;
     margin:auto;
     padding:100px 20px 60px 20px;
     line-height:1.7;
@@ -181,7 +181,7 @@ color:#520e0e;
 }
 .about-wrap{
     display:flex;
-    gap:40px;
+    gap:30px;
     align-items:center;
 }
 .about-text{
