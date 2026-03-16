@@ -271,14 +271,14 @@ overflow:hidden;
 height:100%;
 background:#380f0f;
 }
-.html{
-    width:60%;
-}
 .cysec{
     width:55%
 }
 .python{
     width:50%
+}
+.html{
+    width:47%;
 }
 .sql{
     width:47%
