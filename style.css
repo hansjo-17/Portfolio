@@ -345,7 +345,18 @@ nav a:hover::after{
     color:#ffffff;
     transform:translateY(-2px);
 }
-
+#menu-toggle{
+    display:none;
+}
+#menu-icon{
+    display:none;
+    font-size:24px;
+    color:#f5f5dc;
+    cursor:pointer;
+}
+.nav-links{
+    display:flex;
+}
 /*For Smaller devices*/
 @media(max-width:768px){
     nav ul{
@@ -395,6 +406,30 @@ nav a:hover::after{
     .foot-content{
         padding:30px 15px;
     }
+    .menu-icon{
+        display:block;
+    }
+    .nav-links{
+        position:absolute;
+        top:60px;
+        left:0;
+        width:100%;
+        background:#521415;
+        flex-direction:column;
+        align-items:center;
+        max-height:0;
+        overflow:hidden;
+        transition:0.3s ease;
+    }
+     #menu-toggle:checked + .menu-icon + .nav-links{
+        max-height:300px;
+        padding:15px 0;
+    }
+    /* Style links */
+    .nav-links li{
+        margin:10px 0;
+    }
+
 }
 @media(max-width:500px){
     .skills-container{
