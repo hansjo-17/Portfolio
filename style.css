@@ -348,12 +348,31 @@ nav a:hover::after{
 
 /*For Smaller devices*/
 @media(max-width:768px){
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:15px;
+    }
+    #home{
+        padding-left:0;
+        text-align:center;
+    }
     .home-container{
         flex-direction:column-reverse;
         text-align:center;
     }
+    #home h1{
+        font-size:32px;
+    }
+    #home p{
+        font-size:18px;
+    }
     .profile{
         margin-bottom:30px;
+    }
+    .profile img{
+        width:200px;
+        height:200px;
     }
     .about-wrap{
         flex-direction:column;
@@ -369,5 +388,16 @@ nav a:hover::after{
     }
     .contact-form textarea{
         grid-column:span 1;
+    }
+    .contact-form button{
+        width:100%;
+    }
+    .foot-content{
+        padding:30px 15px;
+    }
+}
+@media(max-width:500px){
+    .skills-container{
+        grid-template-columns:1fr;
     }
 }
