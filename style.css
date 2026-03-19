@@ -251,7 +251,7 @@ nav a:hover::after{
 .progress{
     height:100%;
     background:#380f0f;
-    /* center percentage text */
+    /*center percentage text*/
     display:flex;
     align-items:center;
     justify-content:center;
@@ -260,7 +260,7 @@ nav a:hover::after{
     font-size:small;
     font-weight:bold;
 }
-/* Skill percentages */
+/*Skill percentages*/
 .cysec{width:55%}
 .python{width:50%}
 .html{width:47%}
@@ -271,7 +271,7 @@ nav a:hover::after{
 .mongo{width:39%}
 /*---Progress Bar Terminate---*/
 
-/*Contact form*/
+/*----Contact Section----*/
 #contact h2{
     font-size:27px;
 }
@@ -306,6 +306,44 @@ nav a:hover::after{
     cursor:pointer;
     width:160px;
     font-weight:bold;
+}
+/*----Footer Section----*/
+.foot{
+    background-color:#521415;
+    color:#f5f5dc;
+    margin-top:60px;
+}
+.foot-content{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
+}
+.foot-content h3{
+    margin-bottom:20px;
+    font-size:20px;
+}
+.foot-contact{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    align-items:center;
+}
+.foot-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#f5f5dc;
+    font-size:16px;
+    transition:0.3s;
+}
+.foot-item i{
+    font-size:18px;
+}
+.foot-item:hover{
+    color:#ffffff;
+    transform:translateY(-2px);
 }
 
 /*For Smaller devices*/
