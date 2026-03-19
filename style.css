@@ -345,18 +345,7 @@ nav a:hover::after{
     color:#ffffff;
     transform:translateY(-2px);
 }
-#menu-toggle{
-    display:none;
-}
-#menu-icon{
-    display:none;
-    font-size:24px;
-    color:#f5f5dc;
-    cursor:pointer;
-}
-.nav-links{
-    display:flex;
-}
+
 /*For Smaller devices*/
 @media(max-width:768px){
     nav ul{
@@ -406,30 +395,80 @@ nav a:hover::after{
     .foot-content{
         padding:30px 15px;
     }
+}
+/*---Hidden Menu---*/
+#menu-toggle{
+    display:none;
+}
+.menu-icon{
+    display:none;
+    flex-direction:column;
+    justify-content:space-between;
+    width:25px;
+    height:18px;
+    cursor:pointer;
+    z-index:1001;
+}
+.menu-icon span{
+    display:block;
+    height:3px;
+    width:100%;
+    background:#f5f5dc;
+    border-radius:2px;
+    transition:0.3s;
+}
+.nav-links{
+    display:flex;
+}
+@media(max-width:768px){
     .menu-icon{
-        display:block;
+        display:flex;
     }
     .nav-links{
-        position:absolute;
-        top:60px;
-        left:0;
-        width:100%;
+        position:fixed;
+        top:0;
+        right:-100%;
+        height:100vh;
+        width:250px;
         background:#521415;
+        display:flex;
         flex-direction:column;
         align-items:center;
-        max-height:0;
-        overflow:hidden;
+        justify-content:center;
+        gap:25px;
         transition:0.3s ease;
+        z-index:1000;
     }
-     #menu-toggle:checked + .menu-icon + .nav-links{
-        max-height:300px;
-        padding:15px 0;
+    #menu-toggle:checked ~ .nav-links{
+        right:0;
     }
-    /* Style links */
-    .nav-links li{
-        margin:10px 0;
+    .overlay{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        backdrop-filter:blur(5px);
+        background:rgba(0,0,0,0.2);
+        opacity:0;
+        pointer-events:none;
+        transition:0.3s;
+        z-index:999;
     }
-
+    #menu-toggle:checked ~ .overlay{
+        opacity:1;
+        pointer-events:auto;
+    }
+    /*---Close Menu X---*/
+    #menu-toggle:checked + .menu-icon span:nth-child(1){
+        transform:rotate(45deg) translate(5px,5px);
+    }
+    #menu-toggle:checked + .menu-icon span:nth-child(2){
+        opacity:0;
+    }
+    #menu-toggle:checked + .menu-icon span:nth-child(3){
+         transform:rotate(-45deg) translate(6px,-6px);
+    }
 }
 @media(max-width:500px){
     .skills-container{
