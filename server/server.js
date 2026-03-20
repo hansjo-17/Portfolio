@@ -129,6 +129,25 @@ app.delete("/api/certificates/:id", (req, res) => {
     res.status(200).json({ message: "Certificate deleted successfully" });
   });
 });
+app.put("/api/certificates/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, issuer, file_name } = req.body;
+
+  if (!title || !issuer || !file_name) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  const sql = "UPDATE certificates SET title=?, issuer=?, file_name=? WHERE id=?";
+
+  db.query(sql, [title, issuer, file_name, id], (err, result) => {
+    if (err) {
+      console.error("Error updating certificate:", err.message);
+      return res.status(500).json({ message: "Failed to update certificate" });
+    }
+
+    res.status(200).json({ message: "Certificate updated successfully" });
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

@@ -131,6 +131,7 @@ async function loadCertificates() {
         <p><strong>Title:</strong> ${certificate.title}</p>
         <p><strong>Issuer:</strong> ${certificate.issuer}</p>
         <p><strong>File:</strong> ${certificate.file_name}</p>
+        <button onclick="editCertificate(${certificate.id}, '${certificate.title}', '${certificate.issuer}', '${certificate.file_name}')">Edit</button>
         <button onclick="deleteCertificate(${certificate.id})">Delete</button>
       `;
       certificatesList.appendChild(div);
@@ -152,4 +153,43 @@ async function deleteCertificate(id) {
   } catch (error) {
     alert("Failed to delete certificate");
   }
+}
+function editCertificate(id, title, issuer, file_name) {
+  document.getElementById("certTitle").value = title;
+  document.getElementById("certIssuer").value = issuer;
+  document.getElementById("certFileName").value = file_name;
+
+  certificateForm.onsubmit = async (e) => {
+    e.preventDefault();
+
+    const updatedTitle = document.getElementById("certTitle").value;
+    const updatedIssuer = document.getElementById("certIssuer").value;
+    const updatedFileName = document.getElementById("certFileName").value;
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/certificates/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: updatedTitle,
+          issuer: updatedIssuer,
+          file_name: updatedFileName
+        })
+      });
+
+      const data = await response.json();
+      alert(data.message);
+
+      certificateForm.reset();
+      loadCertificates();
+
+      // restore original add behavior
+      location.reload();
+
+    } catch (error) {
+      alert("Failed to update certificate");
+    }
+  };
 }
