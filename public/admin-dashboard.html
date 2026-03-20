@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="admin-container">
+    <h1>Admin Dashboard</h1>
+
+    <h2>Contact Messages</h2>
+    <div id="contactsList"></div>
+
+    <h2>Add Certificate</h2>
+    <form id="certificateForm">
+      <input type="text" id="certTitle" placeholder="Certificate Title" required />
+      <input type="text" id="certIssuer" placeholder="Issuer" required />
+      <input type="text" id="certFileName" placeholder="File Name" required />
+      <button type="submit">Add Certificate</button>
+    </form>
+
+    <p id="certMessage"></p>
+
+    <h2>Certificates</h2>
+    <div id="certificatesList"></div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
