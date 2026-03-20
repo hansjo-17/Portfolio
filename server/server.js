@@ -41,6 +41,46 @@ app.get("/api/contacts", (req, res) => {
     res.status(200).json(results);
   });
 });
+app.delete("/api/contacts/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "DELETE FROM contacts WHERE id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting contact:", err.message);
+      return res.status(500).json({ message: "Failed to delete contact" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Contact not found" });
+    }
+
+    res.status(200).json({ message: "Contact deleted successfully" });
+  });
+});
+app.post("/api/admin/login", (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password are required" });
+  }
+
+  const sql = "SELECT * FROM admins WHERE username = ? AND password = ?";
+
+  db.query(sql, [username, password], (err, results) => {
+    if (err) {
+      console.error("Error during admin login:", err.message);
+      return res.status(500).json({ message: "Login failed" });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    res.status(200).json({ message: "Login successful" });
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
