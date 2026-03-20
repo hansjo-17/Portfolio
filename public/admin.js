@@ -193,3 +193,7 @@ function editCertificate(id, title, issuer, file_name) {
     }
   };
 }
+function logout() {
+  localStorage.removeItem("isAdminLoggedIn");
+  window.location.href = "admin-login.html";
+}
