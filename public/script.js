@@ -36,3 +36,45 @@ if (contactForm) {
     }
   });
 }
+const certificatesContainer = document.getElementById("certificatesContainer");
+
+async function loadPortfolioCertificates() {
+  if (!certificatesContainer) return;
+
+  try {
+    const response = await fetch("http://localhost:5000/api/certificates");
+    const certificates = await response.json();
+
+    certificatesContainer.innerHTML = "";
+
+    certificates.forEach((certificate) => {
+      const certCard = document.createElement("a");
+      certCard.classList.add("cert-item");
+      certCard.href = `CERTIFICATES/${certificate.file_name}`;
+      certCard.target = "_blank";
+
+      let iconClass = "fa-solid fa-code";
+
+      if (certificate.title.toLowerCase().includes("cyber")) {
+        iconClass = "fa-solid fa-shield-halved";
+      } else if (certificate.title.toLowerCase().includes("node")) {
+        iconClass = "fa-brands fa-node-js";
+      } else if (certificate.title.toLowerCase().includes("github")) {
+        iconClass = "fa-solid fa-code";
+      } else if (certificate.title.toLowerCase().includes("front end")) {
+        iconClass = "fa-solid fa-code";
+      }
+
+      certCard.innerHTML = `
+        <i class="${iconClass}"></i>
+        <p>${certificate.title}(${certificate.issuer})</p>
+      `;
+
+      certificatesContainer.appendChild(certCard);
+    });
+  } catch (error) {
+    certificatesContainer.innerHTML = "<p>Failed to load certificates</p>";
+  }
+}
+
+loadPortfolioCertificates();
