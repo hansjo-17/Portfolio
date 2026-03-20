@@ -81,6 +81,53 @@ app.post("/api/admin/login", (req, res) => {
     res.status(200).json({ message: "Login successful" });
   });
 });
+app.post("/api/certificates", (req, res) => {
+  const { title, issuer, file_name } = req.body;
+
+  if (!title || !issuer || !file_name) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  const sql = "INSERT INTO certificates (title, issuer, file_name) VALUES (?, ?, ?)";
+  db.query(sql, [title, issuer, file_name], (err, result) => {
+    if (err) {
+      console.error("Error adding certificate:", err.message);
+      return res.status(500).json({ message: "Failed to add certificate" });
+    }
+
+    res.status(201).json({ message: "Certificate added successfully" });
+  });
+});
+app.get("/api/certificates", (req, res) => {
+  const sql = "SELECT * FROM certificates ORDER BY created_at DESC";
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error fetching certificates:", err.message);
+      return res.status(500).json({ message: "Failed to fetch certificates" });
+    }
+
+    res.status(200).json(results);
+  });
+});
+app.delete("/api/certificates/:id", (req, res) => {
+  const { id } = req.params;
+
+  const sql = "DELETE FROM certificates WHERE id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting certificate:", err.message);
+      return res.status(500).json({ message: "Failed to delete certificate" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Certificate not found" });
+    }
+
+    res.status(200).json({ message: "Certificate deleted successfully" });
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
