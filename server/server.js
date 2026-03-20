@@ -29,6 +29,18 @@ app.post("/api/contact", (req, res) => {
     res.status(201).json({ message: "Message saved successfully" });
   });
 });
+app.get("/api/contacts", (req, res) => {
+  const sql = "SELECT * FROM contacts ORDER BY created_at DESC";
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error fetching contacts:", err.message);
+      return res.status(500).json({ message: "Failed to fetch contacts" });
+    }
+
+    res.status(200).json(results);
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
