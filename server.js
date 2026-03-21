@@ -5,11 +5,7 @@ const dotenv = require("dotenv").config;
 const db = require("./db");
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(cors({
-  origin:backendjo.up.railway.app
-}
-
-));
+app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 app.get("/", (req, res) => {
