@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv").config;
-//dotenv.config({ path: __dirname + "/.env" });//
+const dotenv = require("dotenv")
+dotenv.config({ path: __dirname + "/.env" });
 const db = require("./db");
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -148,12 +148,12 @@ app.put("/api/certificates/:id", (req, res) => {
     res.status(200).json({ message: "Certificate updated successfully" });
   });
 });
-/*app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});*/
-/*app.get("/", (req, res) => {
-  res.send("Backend is running");
-});*/
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+/*app.get("/", (req, res) => {
+  res.send("Backend is running");
+});
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});*/
