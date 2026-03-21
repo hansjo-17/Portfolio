@@ -1,5 +1,8 @@
 const mysql = require("mysql2");
-
+if (!process.env.DATABASE_URL) {
+  console.error("DATABASE_URL is missing!");
+  process.exit(1);
+}
 const url = new URL(process.env.DATABASE_URL);
 
 const db = mysql.createConnection({
