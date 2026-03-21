@@ -148,12 +148,12 @@ app.put("/api/certificates/:id", (req, res) => {
     res.status(200).json({ message: "Certificate updated successfully" });
   });
 });
-//app.listen(PORT, () => {
-//  console.log(`Server running on port ${PORT}`);
-//});
-app.get("/", (req, res) => {
+/*app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});*/
+/*app.get("/", (req, res) => {
   res.send("Backend is running");
-});
+});*/
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
